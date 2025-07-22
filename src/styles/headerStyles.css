@@ -1,0 +1,38 @@
+*{
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid; */
+  padding: 3px;
+}
+.app-logo {
+  height: 100px;
+  width: 110px;
+  padding-left: 2vw;
+}
+
+.nav-ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin-right: 40px;
+  font-size: 18px;
+
+}
+
+.nav-menu-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-menu-container:hover {
+  color: #ff6b03;
+  font-weight: bold;
+}

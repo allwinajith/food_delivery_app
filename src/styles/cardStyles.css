@@ -1,0 +1,103 @@
+.card-container {
+  width: 17vw;
+  min-width: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.4s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card-container:hover {
+  transform: scale(0.9);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.img-container {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.restaurant-offer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+.restaurant-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.res-details-container {
+  padding: 12px;
+  min-width: 240px;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.res-details-container .restaurant-name {
+  font-size: 17px;
+  font-weight: 600;
+  padding-bottom: 5px;
+  color: #333;
+}
+
+.res-details-container .restaurant-rating {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-bottom: 5px;
+  color: #777;
+}
+
+.res-details-container .restaurant-cuisine,
+.res-details-container .restaurant-location {
+  font-size: 14px;
+  color: #555;
+  padding-bottom: 5px;
+}
+
+.res-details-container .restaurant-cuisine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+}
+
+.restaurant-location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.delivery-time-container {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}

@@ -1,0 +1,7 @@
+.body-container {
+  background-color: rgb(243 238 233 / 41%);
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 29px;
+}
