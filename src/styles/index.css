@@ -10,3 +10,27 @@ body,
   flex-direction: column;
   min-height: 100vh;
 }
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.shimmer-card {
+  height: 200px;
+  width: 300px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f3e8e8 8%, #e0dede 18%, #f3e8e8 33%);
+  background-size: 1000px 100%;
+  animation: shimmer 0.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}

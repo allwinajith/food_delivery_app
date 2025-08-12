@@ -1,33 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import { restaurant_details } from "../utils/restro_details";
 import "../styles/bodyStyles.css";
+import Shimmer from "./Shimmer";
 
 const Body = ({ searchTerm }) => {
-  const [restaurantData, setRestaurantData] = useState(restaurant_details);
+  const [restaurantData, setRestaurantData] = useState([]);
+  const [error, setError] = useState(false);
 
-  if (!restaurantData?.restaurants) {
-    return (
-      <div
-        style={{
-          height: "90vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "rgb(243 238 233 / 41%)",
-        }}
-      >
-        Loading or no data available...
-      </div>
-    );
-  }
-
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchRes = await fetch(
+          "https://corsproxy.io/https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0843007&lng=80.2704622&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        );
+        const json = await fetchRes.json();
+        // console.log(json.data.cards[4].card.card.gridElements);
+        // console.log(
+        //   json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants[0]
+        //     .info
+        // );
+        setRestaurantData(
+          json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+        );
+      } catch (err) {
+        console.log(err);
+        setError("Error in fetching the data");
+      }
+    }
+    fetchData();
+  }, []);
+  
   const getValue = (e) => {
     console.log(e.target.value);
   };
 
   const sortBy = (e) => {
-    let rest = restaurantData.restaurants;
+    const rest = [...restaurantData];
     if (e.target.value === "deliveryTime") {
       rest.sort((a, b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime);
     }
@@ -36,8 +45,8 @@ const Body = ({ searchTerm }) => {
 
   const filteredRestaurant =
     searchTerm.trim().length === 0
-      ? restaurantData.restaurants
-      : restaurantData.restaurants.filter((data) =>
+      ? restaurantData
+      : restaurantData.filter((data) =>
           data.info.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
@@ -63,7 +72,11 @@ const Body = ({ searchTerm }) => {
         </div>
       </div>
       <div className="restro-card-container">
-        {filteredRestaurant.length > 0 ? (
+        {restaurantData.length === 0 && !error ? (
+          <Shimmer />
+        ) : error ? (
+          <p style={{ color: "red" }}>{error}</p>
+        ) : filteredRestaurant.length > 0 ? (
           filteredRestaurant.map((rest) => (
             <Card key={rest.info.id} data={rest.info} />
           ))

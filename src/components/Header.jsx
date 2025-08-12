@@ -5,6 +5,7 @@ import { FaSignInAlt, FaSearch } from "react-icons/fa";
 import { MdHelp } from "react-icons/md";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { useState, useCallback } from "react";
+import { NavLink } from "react-router-dom";
 
 function Header({ setSearchTerm }) {
   const [inputValue, setInputValue] = useState("");
@@ -41,19 +42,27 @@ function Header({ setSearchTerm }) {
         <ul className="nav-ul">
           <span className="nav-menu-container">
             <RiDiscountPercentLine />
-            <li>Offers</li>
+            <NavLink className="nav-link" to={"/offers"}>
+              Offers
+            </NavLink>
           </span>
           <span className="nav-menu-container">
             <MdHelp />
-            <li>Help</li>
+            <NavLink className="nav-link" to={"/help"}>
+              Help
+            </NavLink>
           </span>
           <span className="nav-menu-container">
             <FaSignInAlt />
-            <li>Sign In</li>
+            <NavLink className="nav-link" to={"/login"}>
+              Sign In
+            </NavLink>
           </span>
           <span className="nav-menu-container">
             <FaCartArrowDown />
-            <li>Cart</li>
+            <NavLink className="nav-link" to={"/cart"}>
+              Cart
+            </NavLink>
           </span>
         </ul>
       </nav>
